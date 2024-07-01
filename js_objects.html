@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js objects</title>
+</head>
+<body>
+
+    <script>
+
+        class Book {
+    constructor(title, author, pages) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+    }
+
+    displayBookInfo() {
+        return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}`;
+    }
+}
+
+const book1 = new Book("Down the Stream", "Richard Mallice", 328);
+console.log(book1.displayBookInfo());
+
+// account app
+
+class Account {
+    constructor(accountNumber, owner, balance = 0) {
+        this.accountNumber = accountNumber;
+        this.owner = owner;
+        this.balance = balance;
+    }
+
+    deposit(amount) {
+        this.balance += amount;
+        return `Deposited ${amount}. New balance is ${this.balance}`;
+    }
+
+    withdraw(amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            return `Withdrew ${amount}. New balance is ${this.balance}`;
+        } else {
+            return 'Insufficient funds';
+        }
+    }
+
+    calculateCompoundInterest(years, rate) {
+        const n = 1;  // Compounded annually
+        const A = this.balance * Math.pow((1 + rate / n), n * years);
+        return `Amount after ${years} years with interest rate ${rate * 100}%: ${Math.ceil(A)}`;
+    }
+}
+
+
+const account1 = new Account(656578, "Rajon Rondo");
+console.log(account1.deposit(1000));
+console.log(account1.withdraw(500));
+console.log(account1.calculateCompoundInterest(5, 0.05));
+
+    </script>
+
+</body>
+</html>
